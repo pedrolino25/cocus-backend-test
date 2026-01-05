@@ -1,17 +1,7 @@
-import swaggerJsdoc from "swagger-jsdoc";
+import * as path from "path";
 import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 
-const options: swaggerJsdoc.Options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "COCUS Backend Test",
-      version: "1.0.0",
-    },
-  },
-  apis: ["./src/routes/*.ts"],
-};
+const swaggerSpec = YAML.load(path.join(process.cwd(), "swagger.yml"));
 
-const swaggerSpec = swaggerJsdoc(options);
-
-export { swaggerUi, swaggerSpec };
+export { swaggerSpec, swaggerUi };
